@@ -1,0 +1,198 @@
+{
+   "10": {
+      "node_id": "vpp1",
+      "interface_name": "tap10",
+      "interface_idx": 2,
+      "linux_bridge": "br13",
+      "connected_interface": 32
+   },
+   "11": {
+      "node_id": "vpp1",
+      "interface_name": "tap11",
+      "interface_idx": 3,
+      "linux_bridge": "br12",
+      "connected_interface": 20
+   },
+   "20": {
+      "node_id": "vpp2",
+      "interface_name": "tap20",
+      "interface_idx": 2,
+      "linux_bridge": "br12",
+      "connected_interface": 11
+   },
+   "21": {
+      "node_id": "vpp2",
+      "interface_name": "tap21",
+      "interface_idx": 3,
+      "linux_bridge": "br25",
+      "connected_interface": 53
+   },
+   "22": {
+      "node_id": "vpp2",
+      "interface_name": "tap22",
+      "interface_idx": 4,
+      "linux_bridge": "br24",
+      "connected_interface": 40
+   },
+   "23": {
+      "node_id": "vpp2",
+      "interface_name": "tap23",
+      "interface_idx": 5,
+      "linux_bridge": "br26",
+      "connected_interface": 60
+   },
+   "24": {
+      "node_id": "vpp2",
+      "interface_name": "tap24",
+      "interface_idx": 6,
+      "linux_bridge": "br23",
+      "connected_interface": 33
+   },
+   "30": {
+      "node_id": "vpp3",
+      "interface_name": "tap30",
+      "interface_idx": 2,
+      "linux_bridge": "br35",
+      "connected_interface": 50
+   },
+   "31": {
+      "node_id": "vpp3",
+      "interface_name": "tap31",
+      "interface_idx": 3,
+      "linux_bridge": "br34",
+      "connected_interface": 41
+   },
+   "32": {
+      "node_id": "vpp3",
+      "interface_name": "tap32",
+      "interface_idx": 4,
+      "linux_bridge": "br13",
+      "connected_interface": 10
+   },
+   "33": {
+      "node_id": "vpp3",
+      "interface_name": "tap33",
+      "interface_idx": 5,
+      "linux_bridge": "br23",
+      "connected_interface": 24
+   },
+   "34": {
+      "node_id": "vpp3",
+      "interface_name": "tap34",
+      "interface_idx": 6,
+      "linux_bridge": "br37",
+      "connected_interface": 70
+   },
+   "40": {
+      "node_id": "vpp4",
+      "interface_name": "tap40",
+      "interface_idx": 2,
+      "linux_bridge": "br24",
+      "connected_interface": 22
+   },
+   "41": {
+      "node_id": "vpp4",
+      "interface_name": "tap41",
+      "interface_idx": 3,
+      "linux_bridge": "br34",
+      "connected_interface": 31
+   },
+   "42": {
+      "node_id": "vpp4",
+      "interface_name": "tap42",
+      "interface_idx": 4,
+      "linux_bridge": "br45",
+      "connected_interface": 54
+   },
+   "43": {
+      "node_id": "vpp4",
+      "interface_name": "tap43",
+      "interface_idx": 5,
+      "linux_bridge": "br46",
+      "connected_interface": 61
+   },
+   "44": {
+      "node_id": "vpp4",
+      "interface_name": "tap44",
+      "interface_idx": 6,
+      "linux_bridge": "br48",
+      "connected_interface": 80
+   },
+   "50": {
+      "node_id": "vpp5",
+      "interface_name": "tap50",
+      "interface_idx": 2,
+      "linux_bridge": "br35",
+      "connected_interface": 30
+   },
+   "51": {
+      "node_id": "vpp5",
+      "interface_name": "tap51",
+      "interface_idx": 3,
+      "linux_bridge": "br57",
+      "connected_interface": 71
+   },
+   "52": {
+      "node_id": "vpp5",
+      "interface_name": "tap52",
+      "interface_idx": 4,
+      "linux_bridge": "br58",
+      "connected_interface": 81
+   },
+   "53": {
+      "node_id": "vpp5",
+      "interface_name": "tap53",
+      "interface_idx": 5,
+      "linux_bridge": "br25",
+      "connected_interface": 21
+   },
+   "54": {
+      "node_id": "vpp5",
+      "interface_name": "tap54",
+      "interface_idx": 6,
+      "linux_bridge": "br45",
+      "connected_interface": 42
+   },
+   "60": {
+      "node_id": "vpp6",
+      "interface_name": "tap60",
+      "interface_idx": 2,
+      "linux_bridge": "br26",
+      "connected_interface": 23
+   },
+   "61": {
+      "node_id": "vpp6",
+      "interface_name": "tap61",
+      "interface_idx": 3,
+      "linux_bridge": "br46",
+      "connected_interface": 43
+   },
+   "70": {
+      "node_id": "vpp7",
+      "interface_name": "tap70",
+      "interface_idx": 2,
+      "linux_bridge": "br37",
+      "connected_interface": 34
+   },
+   "71": {
+      "node_id": "vpp7",
+      "interface_name": "tap71",
+      "interface_idx": 3,
+      "linux_bridge": "br57",
+      "connected_interface": 51
+   },
+   "80": {
+      "node_id": "vpp8",
+      "interface_name": "tap80",
+      "interface_idx": 2,
+      "linux_bridge": "br48",
+      "connected_interface": 44
+   },
+   "81": {
+      "node_id": "vpp8",
+      "interface_name": "tap81",
+      "interface_idx": 3,
+      "linux_bridge": "br58",
+      "connected_interface": 52
+   }
+}
