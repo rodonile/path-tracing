@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+  ####################################################
+  # Pmacct nfacct daemon (Ipfix collector)
+  ####################################################
+  nfacctd:
+    image: pmacct/nfacctd:latest
+    container_name: nfacctd
+    volumes:
+      - ./config/nfacctd.conf:/etc/pmacct/nfacctd.conf
+      - ./config/pretag.map:/etc/pmacct/pretag.map
+      - ./config/nfacctd-allow.lst:/etc/pmacct/nfacctd-allow.lst
+      - ./data/:/home
+      # Set same timezones as host machine
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/usr/share/zoneinfo:/usr/share/zoneinfo:ro'
+    network_mode: host
+    privileged: true
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Zurich
