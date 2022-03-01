@@ -9,4 +9,4 @@ Instructions on how to install the required dependencies, docker containers and 
 ## Description
 ![Alt text](images/draft_final_pipeline.png?raw=true "Title")
 
-## Instructions
+## Installation and Quickstart Instructions

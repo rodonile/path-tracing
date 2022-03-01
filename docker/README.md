@@ -1,1 +1,1 @@
-# Kafka and Druid installation instruction (via docker-compose)
+# Kafka and Druid deployment instruction (via docker-compose)
