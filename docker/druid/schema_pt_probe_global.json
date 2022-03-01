@@ -1,0 +1,276 @@
+{
+    "type": "kafka",
+    "spec": {
+      "ioConfig": {
+        "type": "kafka",
+        "consumerProperties": {
+          "bootstrap.servers": "kafka:9092"
+        },
+        "topic": "pt.probe.global",
+        "inputFormat": {
+          "type": "json",
+          "flattenSpec": {
+            "fields": [
+              {
+                "name": "snk_node.addr",
+                "type": "path",
+                "expr": "$.snk_node.addr"
+              },
+              {
+                "name": "snk_node.in_interface_id",
+                "type": "path",
+                "expr": "$.snk_node.in_interface_id"
+              },
+              {
+                "name": "snk_node.in_interface_load",
+                "type": "path",
+                "expr": "$.snk_node.in_interface_load"
+              },
+              {
+                "name": "snk_node.in_interface_name",
+                "type": "path",
+                "expr": "$.snk_node.in_interface_name"
+              },
+              {
+                "name": "snk_node.node_id",
+                "type": "path",
+                "expr": "$.snk_node.node_id"
+              },
+              {
+                "name": "snk_node.t64",
+                "type": "path",
+                "expr": "$.snk_node.t64"
+              },
+              {
+                "name": "snk_node.tef_sid",
+                "type": "path",
+                "expr": "$.snk_node.tef_sid"
+              },
+              {
+                "name": "src_node.addr",
+                "type": "path",
+                "expr": "$.src_node.addr"
+              },
+              {
+                "name": "src_node.node_id",
+                "type": "path",
+                "expr": "$.src_node.node_id"
+              },
+              {
+                "name": "src_node.out_interface_id",
+                "type": "path",
+                "expr": "$.src_node.out_interface_id"
+              },
+              {
+                "name": "src_node.out_interface_load",
+                "type": "path",
+                "expr": "$.src_node.out_interface_load"
+              },
+              {
+                "name": "src_node.out_interface_name",
+                "type": "path",
+                "expr": "$.src_node.out_interface_name"
+              },
+              {
+                "name": "src_node.t64",
+                "type": "path",
+                "expr": "$.src_node.t64"
+              },
+              {
+                "name": "path_info.nodes_path",
+                "type": "path",
+                "expr": "$.path_info.nodes_path"
+              },
+              {
+                "name": "path_info.nodes_path_list",
+                "type": "path",
+                "expr": "$.path_info.nodes_path_list"
+              },
+              {
+                "name": "path_info.interface_id_path",
+                "type": "path",
+                "expr": "$.path_info.interface_id_path"
+              },
+              {
+                "name": "path_info.interface_name_path",
+                "type": "path",
+                "expr": "$.path_info.interface_name_path"
+              },
+              {
+                "name": "path_info.delay",
+                "type": "path",
+                "expr": "$.path_info.delay"
+              }
+            ]
+          }
+        },
+        "useEarliestOffset": false
+      },
+      "tuningConfig": {
+        "type": "kafka"
+      },
+      "dataSchema": {
+        "dataSource": "pt.probe.global",
+        "timestampSpec": {
+          "column": "none",
+          "format": "auto",
+          "missingValue": "2020-01-01T00:00:0.000Z"
+        },
+        "transformSpec": {
+          "transforms": [
+            {
+              "type": "expression",
+              "name": "__time",
+              "expression": "cast(bitwiseShiftRight(cast(\"snk_node.t64\", 'LONG'), 32) * 1000000000 + cast(\"snk_node.t64\", 'LONG') % 4294967296, 'DOUBLE') / 1000000"
+            },
+            {
+              "type": "expression",
+              "name": "snk_node.timestamp_ns",
+              "expression": "bitwiseShiftRight(cast(\"snk_node.t64\", 'LONG'), 32) * 1000000000 + cast(\"snk_node.t64\", 'LONG') % 4294967296"
+            },
+            {
+              "type": "expression",
+              "name": "src_node.timestamp_ns",
+              "expression": "bitwiseShiftRight(cast(\"src_node.t64\", 'LONG'), 32) * 1000000000 + cast(\"src_node.t64\", 'LONG') % 4294967296"
+            },
+            {
+              "type": "expression",
+              "name": "delay_ns",
+              "expression": "cast(bitwiseShiftRight(cast(\"snk_node.t64\", 'LONG'), 32) * 1000000000 + cast(\"snk_node.t64\", 'LONG') % 4294967296, 'DOUBLE') - cast(bitwiseShiftRight(cast(\"src_node.t64\", 'LONG'), 32) * 1000000000 + cast(\"src_node.t64\", 'LONG') % 4294967296, 'DOUBLE')"
+            },
+            {
+              "type": "expression",
+              "name": "delay_ms",
+              "expression": "(cast(bitwiseShiftRight(cast(\"snk_node.t64\", 'LONG'), 32) * 1000000000 + cast(\"snk_node.t64\", 'LONG') % 4294967296, 'DOUBLE') - cast(bitwiseShiftRight(cast(\"src_node.t64\", 'LONG'), 32) * 1000000000 + cast(\"src_node.t64\", 'LONG') % 4294967296, 'DOUBLE')) / 1000000"
+            },
+            {
+                "type": "expression",
+                "name": "path_info.delay",
+                "expression": "cast(\"path_info.delay\", 'DOUBLE')"
+            }
+          ]
+        },
+        "dimensionsSpec": {
+          "dimensions": [
+            "snk_node.addr",
+            {
+              "type": "long",
+              "name": "snk_node.in_interface_id"
+            },
+            {
+              "type": "long",
+              "name": "snk_node.in_interface_load"
+            },
+            "snk_node.in_interface_name",
+            "snk_node.node_id",
+            {
+              "type": "long",
+              "name": "snk_node.t64"
+            },
+            "snk_node.tef_sid",
+            "src_node.addr",
+            "src_node.node_id",
+            {
+              "type": "long",
+              "name": "src_node.out_interface_id"
+            },
+            {
+              "type": "long",
+              "name": "src_node.out_interface_load"
+            },
+            "src_node.out_interface_name",
+            {
+              "type": "long",
+              "name": "src_node.t64"
+            },
+            {
+              "type": "long",
+              "name": "traffic_class"
+            },
+            {
+              "type": "long",
+              "name": "flow_label"
+            },
+            {
+              "type": "long",
+              "name": "payload_length"
+            },
+            {
+              "type": "long",
+              "name": "hop_limit"
+            },
+            {
+              "type": "long",
+              "name": "hbh_opt_length"
+            },
+            {
+              "type": "long",
+              "name": "midpoint_count"
+            },
+            "mcd_stack",
+            {
+              "type": "long",
+              "name": "srh_tag"
+            },
+            {
+              "type": "long",
+              "name": "srh_flag"
+            },
+            {
+              "type": "long",
+              "name": "segments_left"
+            },
+            {
+                "type": "string",
+                "name": "sid_list",
+                "multiValueHandling": "ARRAY",
+                "createBitmapIndex": true
+            },
+            {
+              "type": "long",
+              "name": "session_id"
+            },
+            {
+              "type": "long",
+              "name": "sequence_number"
+            },
+            "path_info.nodes_path",
+            {
+                "type": "string",
+                "name": "path_info.nodes_path_list",
+                "multiValueHandling": "ARRAY",
+                "createBitmapIndex": true
+            },
+            "path_info.interface_id_path",
+            "path_info.interface_name_path",
+            {
+                "type": "double",
+                "name": "path_info.delay"
+            },
+            "sid_list_full",
+            {
+              "type": "long",
+              "name": "snk_node.timestamp_ns"
+            },
+            {
+              "type": "long",
+              "name": "src_node.timestamp_ns"
+            },
+            {
+              "type": "long",
+              "name": "delay_ns"
+            },
+            {
+              "type": "double",
+              "name": "delay_ms"
+            }
+          ]
+        },
+        "granularitySpec": {
+          "queryGranularity": "none",
+          "rollup": false,
+          "segmentGranularity": "hour"
+        }
+      }
+    }
+  }

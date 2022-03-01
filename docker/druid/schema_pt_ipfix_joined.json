@@ -1,0 +1,124 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "local",
+        "baseDir": "/var/tmp/samples",
+        "filter": "*.csv"
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "pt.ipfix.joined",
+      "timestampSpec": {
+        "column": "__time"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          "ip_src",
+          "ip_dst",
+          "src_node",
+          "link_1",
+          "mid_node_1",
+          "link_2",
+          "mid_node_2",
+          "link_3",
+          "snk_node",
+          "full_path",
+          {
+            "type": "double",
+            "name": "link_1_delay_avg"
+          },
+          {
+            "type": "double",
+            "name": "link_1_delay_max"
+          },
+          {
+            "type": "double",
+            "name": "link_1_delay_min"
+          },
+          {
+            "type": "double",
+            "name": "link_2_delay_avg"
+          },
+          {
+            "type": "double",
+            "name": "link_2_delay_max"
+          },
+          {
+            "type": "double",
+            "name": "link_2_delay_min"
+          },
+          {
+            "type": "double",
+            "name": "link_3_delay_avg"
+          },
+          {
+            "type": "double",
+            "name": "link_3_delay_max"
+          },
+          {
+            "type": "double",
+            "name": "link_3_delay_min"
+          },
+          {
+            "type": "double",
+            "name": "full_path_delay_avg"
+          },
+          {
+            "type": "long",
+            "name": "link_1_packets"
+          },
+          {
+            "type": "long",
+            "name": "link_2_packets"
+          },
+          {
+            "type": "long",
+            "name": "link_3_packets"
+          },
+          {
+            "type": "long",
+            "name": "link_1_bytes"
+          },
+          {
+            "type": "long",
+            "name": "link_2_bytes"
+          },
+          {
+            "type": "long",
+            "name": "link_3_bytes"
+          },
+          {
+            "type": "long",
+            "name": "link_1_count_considered_for_delay"
+          },
+          {
+            "type": "long",
+            "name": "link_2_count_considered_for_delay"
+          },
+          {
+            "type": "long",
+            "name": "link_3_count_considered_for_delay"
+          }
+        ]
+      },
+      "granularitySpec": {
+        "queryGranularity": "none",
+        "rollup": false,
+        "segmentGranularity": "hour"
+      }
+    }
+  }
+}

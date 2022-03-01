@@ -1,0 +1,9 @@
+[Unit]
+Description=Turnilo
+ 
+[Service]
+ExecStart=/home/ethrole1/daisy/turnilo/start_turnilo.sh
+ExecStop=/home/ethrole1/daisy/turnilo/stop_turnilo.sh
+ 
+[Install]
+WantedBy=multi-user.target

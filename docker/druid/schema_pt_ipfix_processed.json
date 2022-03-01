@@ -1,0 +1,162 @@
+{
+  "type": "kafka",
+  "spec": {
+    "ioConfig": {
+      "type": "kafka",
+      "consumerProperties": {
+        "bootstrap.servers": "kafka:9092"
+      },
+      "topic": "pt.ipfix.processed",
+      "inputFormat": {
+        "type": "json"
+      },
+      "useEarliestOffset": false
+    },
+    "tuningConfig": {
+      "type": "kafka"
+    },
+    "dataSchema": {
+      "dataSource": "pt.ipfix.processed",
+      "timestampSpec": {
+        "column": "none",
+        "format": "auto",
+        "missingValue": "2020-01-01T00:00:0.000Z"
+      },
+      "transformSpec": {
+        "transforms": [
+          {
+            "type": "expression",
+            "name": "__time",
+            "expression": "cast(\"timestamp_arrival\", 'DOUBLE') * 1000"
+          }
+        ]
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          "event_type",
+          "peer_ip_src",
+          {
+            "type": "long",
+            "name": "iface_in"
+          },
+          {
+            "type": "long",
+            "name": "iface_out"
+          },
+          "ip_src",
+          "ip_dst",
+          {
+            "type": "long",
+            "name": "port_src"
+          },
+          {
+            "type": "long",
+            "name": "port_dst"
+          },
+          "ip_proto",
+          {
+            "type": "long",
+            "name": "timestamp_start"
+          },
+          {
+            "type": "long",
+            "name": "timestamp_end"
+          },
+          {
+            "type": "double",
+            "name": "timestamp_arrival"
+          },
+          {
+            "type": "long",
+            "name": "timestamp_min"
+          },
+          {
+            "type": "long",
+            "name": "timestamp_max"
+          },
+          {
+            "type": "long",
+            "name": "timestamp_export"
+          },
+          {
+            "type": "long",
+            "name": "stamp_inserted"
+          },
+          {
+            "type": "long",
+            "name": "stamp_updated"
+          },
+          {
+            "type": "long",
+            "name": "packets"
+          },
+          {
+            "type": "long",
+            "name": "bytes"
+          },
+          "writer_id",
+          "peer_id",
+          {
+            "type": "long",
+            "name": "iface_in_id"
+          },
+          "iface_in_name",
+          "link_in",
+          {
+            "type": "long",
+            "name": "link_in_connected_iface"
+          },
+          "link_in_connected_node",
+          {
+            "type": "double",
+            "name": "iface_in_avg_delay"
+          },
+          {
+            "type": "long",
+            "name": "iface_in_count_considered_for_delay"
+          },
+          {
+            "type": "double",
+            "name": "iface_in_max_delay"
+          },
+          {
+            "type": "double",
+            "name": "iface_in_min_delay"
+          },
+          {
+            "type": "long",
+            "name": "iface_out_id"
+          },
+          "iface_out_name",
+          "link_out",
+          {
+            "type": "long",
+            "name": "link_out_connected_iface"
+          },
+          "link_out_connected_node",
+          {
+            "type": "double",
+            "name": "iface_out_avg_delay"
+          },
+          {
+            "type": "long",
+            "name": "iface_out_count_considered_for_delay"
+          },
+          {
+            "type": "double",
+            "name": "iface_out_max_delay"
+          },
+          {
+            "type": "double",
+            "name": "iface_out_min_delay"
+          }
+        ]
+      },
+      "granularitySpec": {
+        "queryGranularity": "none",
+        "rollup": false,
+        "segmentGranularity": "hour"
+      }
+    }
+  }
+}
