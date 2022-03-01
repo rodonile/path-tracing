@@ -2,10 +2,10 @@
 # VPP NETWORK TOPOLOGY DEPLOYMENT FOR CISCO PATH TRACING
 # MASTER THESIS OF LEONARDO RODONI (ETHZ) IN COLLABORATION WITH SWISSCOM (SWISS ISP)
 # 
-# This script automates the deployment of a virtual network topology in a linux server (http://topology_diagram_link)
+# This script automates the deployment of a virtual network topology in a linux server
 # It is configured to export path-tracing probes to a collector binary and export IPFIX metrics to pmacct
 # 
-# Further information on how to deploy the visualization pipeline can be found at http://github-readme-link
+# Further information on how to deploy the visualization pipeline can be found at https://github.com/rodonile/path-tracing
 #
 # REQUIREMENTS: 
 # - Ubuntu 20.04 server with at least 8 cores (each vpp instance is bound to a single core)
@@ -289,7 +289,7 @@ sudo vppctl -s /run/vpp/cli.vpp1.sock pt iface add iface tap11 id 11 tts-templat
 sudo vppctl -s /run/vpp/cli.vpp1.sock pt probe-inject-iface add iface host-vpp1 
 
 # SRv6 Configuration
-sudo vppctl -s /run/vpp/cli.vpp1.sock set sr encaps source addr fcbb:bb00:1::1
+sudo vppctl -s /run/vpp/cli.vpp1.sock set sr encaps source addr 2001:db8:c:e::1
 sudo vppctl -s /run/vpp/cli.vpp1.sock sr localsid prefix fcbb:bb00:1::/48 behavior un 16
 sudo vppctl -s /run/vpp/cli.vpp1.sock sr localsid address fcbb:bb00:1::100 behavior end
 
@@ -678,7 +678,7 @@ sudo vppctl -s /run/vpp/cli.vpp6.sock pt iface add iface tap61 id 61 tts-templat
 sudo vppctl -s /run/vpp/cli.vpp6.sock pt probe-inject-iface add iface host-vpp6 
 
 # SRv6 Configuration
-sudo vppctl -s /run/vpp/cli.vpp6.sock set sr encaps source addr fcbb:bb00:6::1
+sudo vppctl -s /run/vpp/cli.vpp6.sock set sr encaps source addr 2001:db8:c:e::6
 sudo vppctl -s /run/vpp/cli.vpp6.sock sr localsid prefix fcbb:bb00:6::/48 behavior un 16
 sudo vppctl -s /run/vpp/cli.vpp6.sock sr localsid address fcbb:bb00:6::100 behavior end
 
@@ -753,7 +753,7 @@ sudo vppctl -s /run/vpp/cli.vpp7.sock pt iface add iface tap71 id 71 tts-templat
 sudo vppctl -s /run/vpp/cli.vpp7.sock pt probe-inject-iface add iface host-vpp7 
 
 # SRv6 Configuration
-sudo vppctl -s /run/vpp/cli.vpp7.sock set sr encaps source addr fcbb:bb00:7::1
+sudo vppctl -s /run/vpp/cli.vpp7.sock set sr encaps source addr 2001:db8:c:e::7
 sudo vppctl -s /run/vpp/cli.vpp7.sock sr localsid prefix fcbb:bb00:7::/48 behavior un 16
 sudo vppctl -s /run/vpp/cli.vpp7.sock sr localsid address fcbb:bb00:7::100 behavior end
 
@@ -827,7 +827,7 @@ sudo vppctl -s /run/vpp/cli.vpp8.sock pt iface add iface tap81 id 81 tts-templat
 sudo vppctl -s /run/vpp/cli.vpp8.sock pt probe-inject-iface add iface host-vpp8 
 
 # SRv6 Configuration
-sudo vppctl -s /run/vpp/cli.vpp8.sock set sr encaps source addr fcbb:bb00:8::1
+sudo vppctl -s /run/vpp/cli.vpp8.sock set sr encaps source addr 2001:db8:c:e::8
 sudo vppctl -s /run/vpp/cli.vpp8.sock sr localsid prefix fcbb:bb00:8::/48 behavior un 16
 sudo vppctl -s /run/vpp/cli.vpp8.sock sr localsid address fcbb:bb00:8::100 behavior end
 
