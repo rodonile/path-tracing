@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Install docker and docker compose. A guide can be found for example [here](https://support.netfoundry.io/hc/en-us/articles/360057865692-Installing-Docker-and-docker-compose-for-Ubuntu-20-04).
+- Install docker and docker compose. A quick guide is available [here](https://support.netfoundry.io/hc/en-us/articles/360057865692-Installing-Docker-and-docker-compose-for-Ubuntu-20-04).
 
 ## Kafka and Druid deployment instruction
 
