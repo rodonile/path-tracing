@@ -31,6 +31,9 @@ Instructions on how to install the required dependencies, docker containers and 
 
 - Going through the setup script you will find other parameters that you can change, such as for example link_delays and Path Tracing templates.
 
+- **[Pmacct](https://github.com/pmacct/pmacct) collector**  
+    Pmacct needs to be installed if IPFIX integration is desired, but is not required for basic functionality of the main Path Tracing pipeline. Refer to the "Design" section of [my thesis](https://leonardorodoni.ch/thesis.pdf) for more explanations. The nfacct daemon (Pmacct daemon listening for IPFIX packets) can be deployed as a docker container. A docker-compose.yml file, instructions on how to provision it as well as configuration files are available in the ./docker folder.
+
 ## How to run the pipeline
 
 - Make sure all the requirements are satisfied

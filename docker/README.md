@@ -16,4 +16,22 @@
 
 ## Configuration of the Druid Datasources
 
+
 ## Pmacct deploymend instructions
+
+The docker container will setup a nfacctd listener on 192.168.0.100:4739. The setup script already configures all vpp routers to export IPFIX information to this address. 
+
+To deploy the nfacct container:
+
+- Navigate to the docker/pmacct directory:
+
+        cd path_tracing/docker/pmacct
+
+- Deploy the docker-compose stack:
+
+        docker-compose up -d
+
+- If you modify the config file (path_tracing/docker/pmacct/config/nfacctd.conf), the docker container needs to be recreated:
+
+        docker-compose down
+        docker-compose up -d
