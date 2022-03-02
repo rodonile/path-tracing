@@ -45,3 +45,8 @@ Instructions on how to install the required dependencies, docker containers and 
 The script takes care of bootstrapping the virtual network, starting some python processing programs and launches Path Tracing probes sessions to generate traffic into the network. If successful, the script will launch a tmux session like the following:
 
 [Insert tmux image]
+
+## How to access Turnilo and Druid GUIs:
+
+- Turnilo listens at port localhost:9090
+- Druid listens at port localhost:8888
