@@ -13,9 +13,15 @@ Instructions on how to install the required dependencies, docker containers and 
 
 In order to run the pipeline, the following software instances need to be deployed:
 
+- VPP with Path Tracing Plugin
+  In order to install it refer to the README in the ./vpp folder
+
 - [Apache Kafka](https://kafka.apache.org/) Message Broker
 - [Apache Druid](https://druid.apache.org/) Time Series Database
+  Kafka and Druid have been deployed as docker container. A docker-compose.yml file, information on how to provision it as well as configuration files are available in the ./docker folder. 
+
 - [Turnilo](https://github.com/allegro/turnilo) visualization backend
+  Instruction on how to install and configure Turnilo are available in the ./turnilo folder. 
 
 ## How to run the pipeline
 
