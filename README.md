@@ -45,11 +45,40 @@ Instructions on how to install the required dependencies, docker containers and 
 
         ./setup-network.sh
 
-The script takes care of bootstrapping the virtual network, starting some python processing programs and launches Path Tracing probes sessions to generate traffic into the network. If successful, the script will launch a tmux session like the following:
+The script takes care of bootstrapping the virtual network, starting some python processing programs and launches Path Tracing probes sessions to generate traffic into the network. If successful, the script will launch a tmux session with debugging info:
 
 [Insert tmux image here]
+
+From the tmux session, it is possible to trigger the following functionality:
+
+- Stop current probing session:
+
+        ./reset_probing.sh
+
+- Start the default probing sessions:
+
+        ./lightweight_final_probes.sh
+
+- Start probing sessions with more bandwidth:
+
+        ./final_probes.sh
+
+- Start additional probing sessions  
+  Refer to final_probes.sh scripts for example syntax on how to interact with the Path Tracing probe generation binaries
+
+- Ping throughout the network to check connectivity (this is also done when the script boots up):
+
+        ./reping_all.sh
 
 ## How to access Turnilo and Druid GUIs:
 
 - Turnilo listens at port localhost:9090
 - Druid listens at port localhost:8888
+
+## Tear down virtual network
+
+The following commands stop all vpp instances, programs, scripts and removes all linux network interfaces.
+
+- Exit the tmux session ("ctrl+b" then "d"), then run:
+
+        ./clean-final-network.sh
