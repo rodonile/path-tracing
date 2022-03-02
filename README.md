@@ -17,7 +17,7 @@ Instructions on how to install the required dependencies, docker containers and 
         sudo snap install jo
 
 - **[VPP](https://s3-docs.fd.io/vpp/22.06/) with Path Tracing Plugin**  
-    The code for the VPP version with the Path Tracing patch is available [here](https://github.com/path-tracing/vpp). Since compilation can be quite cumbersome, binaries can be downloaded from [this link](https://leonardorodoni.ch/link_for_binaries), and if you want to quickly test out our pipeline we suggest using them. In order to install the binaries refer to the README in the ./vpp folder.
+    The code for the VPP version with the Path Tracing patch is available [here](https://github.com/path-tracing/vpp). Since compilation can be quite cumbersome, pre-compiled binaries (.deb) can be downloaded from [this link](https://leonardorodoni.ch/link_for_binaries), and if you want to quickly test out our pipeline we suggest using them. In order to install the binaries refer to the README in the ./vpp folder.
 
 - **[Apache Kafka](https://kafka.apache.org/) Message Broker and [Apache Druid](https://druid.apache.org/) Time Series Database**    
     Kafka and Druid can be deployed as docker containers. A docker-compose.yml file, information on how to provision it as well as configuration files are available in the ./docker folder. 
