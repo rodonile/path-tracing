@@ -20,7 +20,7 @@ The docker-compose file spins up a fresh Druid install. To configure Druid as a 
 
 To add a Datasource from the Druid GUI, select "Load Data", "Edit Spec", then copy/paste one of the schemas. For basic functionalities, the datasources pt_probe_processed, pt_probe_global and pt_probe_hub need to be running. For additional IPFIX integration, also the datasources pt_ipfix_processed and pt_ipfix_joined need to be added. 
 
-## Pmacct deploymend instructions
+## Pmacct deployment instructions
 
 The docker container will setup a nfacctd listener on 192.168.0.100:4739. The setup script already configures all vpp routers to export IPFIX information to this address. 
 
