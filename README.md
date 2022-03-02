@@ -77,11 +77,13 @@ From the tmux session, it is possible to trigger the following functionality:
 - Turnilo listens at port localhost:9090
 - Druid listens at port localhost:8888
 
-Here some examples visualization in Turnilo:
+Here some examples of possible visualization in Turnilo:
 
 ![Alt text](images/turnilo_1.PNG?raw=true "Path And Delay")
 
 ![Alt text](images/turnilo_2.PNG?raw=true "Link Delay")
+
+["PUT HERE IMAGE OF VISUALIATION WITH TIME SPLIT"]
 
 Additional visualization examples are available in the "Evaluation" section of [my thesis](https://leonardorodoni.ch/thesis.pdf).
 
