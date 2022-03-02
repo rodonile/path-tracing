@@ -20,14 +20,14 @@ Instructions on how to install the required dependencies, docker containers and 
     The code for the VPP version with the Path Tracing patch is available [here](https://github.com/path-tracing/vpp). Since compilation can be quite cumbersome, binaries can be downloaded from [this link](https://leonardorodoni.ch/link_for_binaries), and if you want to quickly test out our pipeline we suggest using them. In order to install the binaries refer to the README in the ./vpp folder.
 
 - **[Apache Kafka](https://kafka.apache.org/) Message Broker and [Apache Druid](https://druid.apache.org/) Time Series Database**    
-    Kafka and Druid have been deployed as docker container. A docker-compose.yml file, information on how to provision it as well as configuration files are available in the ./docker folder. 
+    Kafka and Druid can be deployed as docker containers. A docker-compose.yml file, information on how to provision it as well as configuration files are available in the ./docker folder. 
 
 - **[Turnilo](https://github.com/allegro/turnilo) visualization backend**  
     Instruction on how to install and configure Turnilo are available in the ./turnilo folder. 
 
-- Each one of the 8 VPP instances is assigned to a single CPU core. We suggest assigning each VPP instance to a single core for stability reasons. You most likely will need to adjust the cpu main-core indexing in the setup script (pipeline/setup-network.sh) under "Start VPP instances" to reflect the available cores on your VM. For example, in a VM with 8 cores, the indexes range from 0 to 7. To assign vpp1 to the first core:
+- Each one of the 8 VPP instances is assigned to a single CPU core. We suggest assigning each VPP instance to a single core for stability reasons. You most likely will need to adjust the cpu main-core indexing in the setup script (**pipeline/setup-network.sh**) under "Start VPP instances" to reflect the available cores on your VM. For example, in a VM with 8 cores, the indexes range from 0 to 7. To assign the virst VPP instance to the first core the parameter in the setup script will be:
 
-        sudo vpp api-segment { prefix vpp1 } socksvr { socket-name /run/vpp/api-vpp1.sock } cpu {main-core 16} unix { cli-listen /run/vpp/cli.vpp1.sock  cli-prompt vpp1# startup-config /etc/vpp/vpp1.conf} plugins { plugin dpdk_plugin.so { disable }
+        cpu {main-core 0}
 
 - Going through the setup script you will find other parameters that you can change, such as for example link_delays and Path Tracing templates.
 

@@ -1,8 +1,6 @@
 # VPP with Path Tracing installation instructions
 
-- Navigate in this directory
-
-        cd path_tracing/vpp
+- Download the vpp packages from [this link](https://leonardorodoni.ch/link_for_binaries)
 
 - Install all the debian packages:
 
