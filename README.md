@@ -7,7 +7,7 @@ For more details explanations on Path Tracing and how the pipeline works refer t
 Instructions on how to install the required dependencies, docker containers and launch the virtual environment are available below.
 
 ## Description
-![Alt text](images/draft_final_pipeline.png?raw=true "Title")
+![Alt text](images/draft_final_pipeline.png?raw=true "Path Tracing Virtual Network Topology Diagram")
 
 ## Installation Instructions and Requirements
 
@@ -47,7 +47,9 @@ Instructions on how to install the required dependencies, docker containers and 
 
 The script takes care of bootstrapping the virtual network, starting some python processing programs and launches Path Tracing probes sessions to generate traffic into the network. If successful, the script will launch a tmux session with debugging info:
 
-[Insert tmux image here]
+Window 1                         |  Window 2
+:-------------------------------:|:--------------------------------:
+![](images/tmux_1.PNG?raw=true)  |  ![](images/tmux_2.PNG?raw=true)
 
 From the tmux session, it is possible to trigger the following functionality:
 
