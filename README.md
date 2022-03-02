@@ -14,6 +14,7 @@ Instructions on how to install the required dependencies, docker containers and 
 In order to run the pipeline, the following software instances and packages need to be deployed:
 
 - We have deployed the pipeline on an Ubuntu 20.04 server, although it should work for any debian based distro. Additional required packages can be installed with the following commands:  
+
         sudo apt install net-tools bridge-utils 
         sudo snap install jo
 
@@ -31,8 +32,13 @@ In order to run the pipeline, the following software instances and packages need
 ## How to run the pipeline
 
 - Make sure all the requirements are satisfied
-- Navigate to the ./pipeline directory
-- Run the bash script ./setup-network.sh
+- Navigate to the pipeline directory
+
+        cd path_tracing/pipeline
+
+- Run the setup script 
+
+        ./setup-network.sh
 
 The script takes care of bootstrapping the virtual network, starting some python processing programs and launches Path Tracing probes sessions to generate traffic into the network. If successful, the script will launch a tmux session like the following:
 
