@@ -16,6 +16,9 @@
 
 ## Configuration of the Druid Datasources
 
+The docker-compose file spins up a fresh Druid install. To configure Druid as a Kafka consumer and queryable by Turnilo, a few Druid Datasources need to be configured. The JSON specifications for the Datasources are available in the path_tracing/docker/druid folder. 
+
+To add a Datasource from the Druid GUI, select "Load Data", "Edit Spec", then copy/paste one of the schemas. For basic functionalities, the datasources pt_probe_processed, pt_probe_global and pt_probe_hub need to be running. For additional IPFIX integration, also the datasources pt_ipfix_processed and pt_ipfix_joined need to be added. 
 
 ## Pmacct deploymend instructions
 
