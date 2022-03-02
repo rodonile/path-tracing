@@ -9,4 +9,19 @@ Instructions on how to install the required dependencies, docker containers and 
 ## Description
 ![Alt text](images/draft_final_pipeline.png?raw=true "Title")
 
-## Installation and Quickstart Instructions
+## Installation and Requirements
+
+In order to run the pipeline, the following software instances need to be deployed:
+
+- [Apache Kafka](https://kafka.apache.org/) Message Broker
+- [Apache Druid](https://druid.apache.org/) Time Series Database
+- [Turnilo](https://github.com/allegro/turnilo) visualization backend
+
+## How to run the pipeline
+
+- Navigate to the ./pipeline directory
+- Run the bash script ./setup-network.sh
+
+The script takes care of bootstrapping the virtual network, starting some python processing programs and launches Path Tracing probes sessions to generate traffic into the network. If successful, the script will launch a tmux session like the following:
+
+[Insert tmux image]
