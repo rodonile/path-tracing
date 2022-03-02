@@ -66,7 +66,7 @@ From the tmux session, it is possible to trigger the following functionality:
         ./final_probes.sh
 
 - Start additional probing sessions  
-  Refer to final_probes.sh scripts for example syntax on how to interact with the Path Tracing probe generation binaries
+  Refer to final_probes.sh scripts for example syntax on how to interact with the Path Tracing probe generation binaries.
 
 - Ping throughout the network to check connectivity (this is also done when the script boots up):
 
@@ -76,6 +76,14 @@ From the tmux session, it is possible to trigger the following functionality:
 
 - Turnilo listens at port localhost:9090
 - Druid listens at port localhost:8888
+
+Here some examples visualization in Turnilo:
+
+![Alt text](images/turnilo_1.PNG?raw=true "Path And Delay")
+
+![Alt text](images/turnilo_2.PNG?raw=true "Link Delay")
+
+Additional visualization examples are available in the "Evaluation" section of [my thesis](https://leonardorodoni.ch/thesis.pdf).
 
 ## Tear down virtual network
 
