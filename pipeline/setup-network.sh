@@ -1057,8 +1057,8 @@ tmux select-pane -t 7
 # Start some probes on the background
 sleep 5
 tmux send-keys './lightweight_final_probes.sh &' C-m
-tmux send-keys 'echo "Probes started on background (lasting 1H)... You can start some additional probes or reset them from here."' C-m
-tmux send-keys 'echo "You could also modify link delays."' C-m
+tmux send-keys 'echo "Probes started on background (lasting 1H)..."' C-m
+tmux send-keys 'cat README.md"' C-m
 
 # Attach to tmux session at windows 0 (PROBING)
 tmux select-window -t 0

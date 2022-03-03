@@ -74,8 +74,9 @@ From the tmux session, it is possible to trigger the following functionality:
 
 - Change default link delays
 
-        ./link_delay_set.sh <"link_id"> <delay_ms>
-        ./link_delay_set.sh -h                        # help
+        ./link_delay_set.sh --help                                      # help
+        ./link_delay_set.sh --link <"link_id"> --delay <delay_ms>       # set new delay to link
+        ./link_delay_set.sh --defaults                                  # reset to default values
 
 ## How to access Turnilo and Druid GUIs:
 
