@@ -93,4 +93,4 @@ The following commands stop all vpp instances, programs, scripts and removes all
 
 - Exit the tmux session ("ctrl+b" then "d"), then run:
 
-        ./clean-final-network.sh
+        ./clean-network.sh
