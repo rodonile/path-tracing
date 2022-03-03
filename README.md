@@ -24,7 +24,7 @@ Instructions on how to install the required dependencies, docker containers and 
 
 - Going through the setup script you will find other parameters that you can change, such as for example link_delays and Path Tracing templates.
 
-The following requirements need to be satisfied if you wish to deploy the visualization pipeline as well. They are not needed if you only want to setup the virtual network with Path Tracing:
+The following requirements need to be satisfied if you wish to deploy the Data Collection and Visualization pipeline as well. They are not needed if you only want to setup the virtual network with Path Tracing:
 
 - **[VPP](https://s3-docs.fd.io/vpp/22.06/) with Path Tracing Plugin**  
     The code for the VPP version with the Path Tracing patch is available [here](https://github.com/path-tracing/vpp). Since compilation can be quite cumbersome, pre-compiled binaries (.deb) can be downloaded from [this link](https://leonardorodoni.ch/link_for_binaries), and if you want to quickly test out our pipeline we suggest using them. In order to install the binaries refer to the README in the ./vpp folder.
