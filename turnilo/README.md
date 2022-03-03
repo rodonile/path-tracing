@@ -20,7 +20,7 @@ Information on how to configure it can be found in the [official documentation](
 
 - To start turnilo with our configuration (config_final.yaml) run:
 
-        turnilo --config /home/ethrole1/daisy/turnilo/config_final.yaml --verbose
+        turnilo --config path_tracing/turnilo/config_final.yaml --verbose
 
 - We suggest enabling a systemd service that starts Turnilo in the background. To create and start a systemd service for Turnilo, first copy the .service file to /etc/systemd/system/turnilo.service, then run the following commands: 
 
