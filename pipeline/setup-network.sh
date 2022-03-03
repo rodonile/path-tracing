@@ -1058,7 +1058,7 @@ tmux select-pane -t 7
 sleep 5
 tmux send-keys './lightweight_final_probes.sh &' C-m
 tmux send-keys 'echo "Probes started on background (lasting 1H)..."' C-m
-tmux send-keys 'cat README.md"' C-m
+tmux send-keys 'cat README.md' C-m
 
 # Attach to tmux session at windows 0 (PROBING)
 tmux select-window -t 0
