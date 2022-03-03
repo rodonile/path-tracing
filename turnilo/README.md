@@ -22,7 +22,7 @@ Information on how to configure it can be found in the [official documentation](
 
         turnilo --config /home/ethrole1/daisy/turnilo/config_final.yaml --verbose
 
-- We suggest enabling a systemd service that starts it in the background. An example .service file is also available in this folder (turnilo.service). To create and start a systemd service for Turnilo, first copy the file to /etc/systemd/system/turnilo.service, then run the following commands: 
+- We suggest enabling a systemd service that starts Turnilo in the background. To create and start a systemd service for Turnilo, first copy the .service file to /etc/systemd/system/turnilo.service, then run the following commands: 
 
         sudo systemctl enable turnilo.service   # enable to start at boot
         sudo systemctl start turnilo.service    # start service
