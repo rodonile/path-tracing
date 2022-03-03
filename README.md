@@ -72,6 +72,11 @@ From the tmux session, it is possible to trigger the following functionality:
 
         ./reping_all.sh
 
+- Change default link delays
+
+        ./link_delay_set.sh <"link_id"> <delay_ms>
+        ./link_delay_set.sh -h                        # help
+
 ## How to access Turnilo and Druid GUIs:
 
 - Turnilo listens at port localhost:9090
