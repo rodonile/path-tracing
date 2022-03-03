@@ -13,8 +13,10 @@ Instructions on how to install the required dependencies, docker containers and 
 
 - We have deployed the pipeline on an Ubuntu 20.04 server, although it should work for any debian based distro. Additional required packages can be installed with the following commands:  
 
-        sudo apt install net-tools bridge-utils 
+        sudo apt install net-tools bridge-utils python3-pip
         sudo snap install jo
+        pip install confluent-kafka
+        pip install pydruid
 
 - **[VPP](https://s3-docs.fd.io/vpp/22.06/) with Path Tracing Plugin**  
     The code for the VPP version with the Path Tracing patch is available [here](https://github.com/path-tracing/vpp). Since compilation can be quite cumbersome, pre-compiled binaries (.deb) can be downloaded from [this link](https://leonardorodoni.ch/link_for_binaries), and if you want to quickly test out our pipeline we suggest using them. In order to install the binaries refer to the README in the ./vpp folder.
