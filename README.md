@@ -89,7 +89,7 @@ Here some examples of possible visualization in Turnilo:
 
 ![Alt text](images/turnilo_2.PNG?raw=true "Link Delay")
 
-["PUT HERE IMAGE OF VISUALIATION WITH TIME SPLIT"]
+![Alt text](images/turnilo_3.PNG?raw=true "Timesplit bandwidth and delay on br12")
 
 Additional visualization examples are available in the "Evaluation" section of [my thesis](https://leonardorodoni.ch/thesis.pdf).
 
