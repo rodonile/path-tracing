@@ -25,8 +25,8 @@ The following diagrams give an idea on what the python scripts do and how they i
 
 ## Main Path Tracing Visualization Pipeline
 
-![Alt text](../../images/pipeline_1.png?raw=true "Path Tracing Main Pipeline")
+![Alt text](../images/pipeline_1.png?raw=true "Path Tracing Main Pipeline")
 
 ## Alternative Postcard-export Pipeline based on IPFIX with Path Tracing correlation
 
-![Alt text](../../images/pipeline_2.png?raw=true "IPFIX Integration with Path Tracing")
+![Alt text](../images/pipeline_2.png?raw=true "IPFIX Integration with Path Tracing")
