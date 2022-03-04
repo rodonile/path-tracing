@@ -21,7 +21,7 @@
 
 # Overview of the scripts' functionality
 
-The following diagrams give an idea on what the python scripts do and how they interact within the Visualization pipeline. Refer to the "Design" Section of [My Thesis](https://leonardorodoni.ch/thesis.pdf) for more detailed information and explanations.
+The following diagrams give an idea on what the python scripts do and how they interact within the Visualization pipeline. Refer to the "Design" Section of [My Thesis](<thesis_pdf_URL>) for more detailed information and explanations.
 
 ## Main Path Tracing Visualization Pipeline
 
