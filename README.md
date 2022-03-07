@@ -82,7 +82,7 @@ From the tmux session, it is possible to trigger the following functionality:
 
         ./reping_all.sh
 
-- Change default link delays
+- Change default link delays (a network diagram with default link delays available [here](images/network_topology_design.pdf))
 
         ./link_delay_set.sh --help                                      # help
         ./link_delay_set.sh --link <"link_id"> --delay <delay_ms>       # set new delay to link
