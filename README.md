@@ -1,6 +1,6 @@
 # Path Tracing Visualization Pipeline
 
-This repository contains a set of scripts that setup a Linux virtual network with VPP routers running the [Path Tracing](https://github.com/path-tracing) protocol. The scripts also launch live python programs that process telemetry packets and ingest them into a kafka broker. The information in the telemetry packets can then be used to visualize important network metrics such as delay and paths.
+This repository contains a set of scripts that setup a Linux virtual network with VPP routers running the [Path Tracing](https://github.com/path-tracing) protocol. Path tracing is The scripts also launch live python programs that process and enrich telemetry packets to prepare them for visualization. The information in the telemetry packets can then be used to visualize important network metrics such as delay and paths. The pipeline is based on [Apache Kafka](https://kafka.apache.org/), [Apache Druid](https://druid.apache.org/), and the [Turnilo](https://github.com/allegro/turnilo) visualization platform. It is also possible to spin up the virtual network alone, if desired.
 
 For more details explanations on Path Tracing and how the pipeline works refer to [My Master Thesis](<thesis_pdf_URL>), which was carried out at [ETH Zurich](https://ee.ethz.ch/) toghether with the [Swisscom](https://swisscom.ch) Telemetry and Analytics Team led by Thomas Graf. 
 
