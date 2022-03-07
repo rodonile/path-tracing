@@ -182,8 +182,18 @@ dataCubes:
         formula: $main.count()
 
       - name: delay_ms_average
-        title: Delay Average (ms)
+        title: Full Path Delay Average (ms)
         formula: $main.average($delay_ms)
+        format: 0,0.000 a
+
+      - name: delay_ms_max
+        title: Full Path Delay Max (ms)
+        formula: $main.max($delay_ms)
+        format: 0,0.000 a
+
+      - name: delay_ms_min
+        title: Full Path Delay Min (ms)
+        formula: $main.min($delay_ms)
         format: 0,0.000 a
 
       # Add 40bytes for IP header
@@ -200,10 +210,10 @@ dataCubes:
         title: mbps
         formula: $main.sum(${payload_length}.add(40))*8 / ($MillisecondsInInterval / 1000) /1000000
 
-      - name: delay_ns_average
-        title: Delay Average (ns)
-        formula: $main.average($delay_ns)
-        format: 0,0.0 a
+#      - name: delay_ns_average
+#        title: Delay Average (ns)
+#        formula: $main.average($delay_ns)
+#        format: 0,0.0 a
 
   ################################################
   # DATACUBE pt.probe.hbh
@@ -358,9 +368,29 @@ dataCubes:
         formula: $main.average(${link_info.delay})
         format: 0,0.000 a
 
+      - name: link_info.delay_max
+        title: Link Delay Max (ms)
+        formula: $main.max(${link_info.delay})
+        format: 0,0.000 a
+
+      - name: link_info.delay_min
+        title: Link Delay Min (ms)
+        formula: $main.min(${link_info.delay})
+        format: 0,0.000 a
+
       - name: delay_ms_average
         title: Full Path Delay Average (ms)
         formula: $main.average($delay_ms)
+        format: 0,0.000 a
+
+      - name: delay_ms_max
+        title: Full Path Delay Max (ms)
+        formula: $main.max($delay_ms)
+        format: 0,0.000 a
+
+      - name: delay_ms_min
+        title: Full Path Delay Min (ms)
+        formula: $main.min($delay_ms)
         format: 0,0.000 a
 
       - name: bps
@@ -375,185 +405,6 @@ dataCubes:
         title: mbps
         formula: $main.sum(${payload_length}.add(40))*8 / ($MillisecondsInInterval / 1000) /1000000
 
-  ################################################
-  # DATACUBE pt.probe.processed
-  ################################################
-  - name: pt.probe.processed
-    title: pt.probe.processed
-    clusterName: druid
-    source: pt.probe.processed
-    timeAttribute: time
-    refreshRule:
-      rule: realtime
-    defaultTimezone: Europe/Paris
-    defaultDuration: PT1H
-    defaultSortMeasure: [count]
-    defaultSelectedMeasures: [count]
-    defaultPinnedDimensions: []
-    introspection: no-autofill
-    attributeOverrides:
-
-    dimensions:
-      - name: time
-        title: Time
-        kind: time
-        formula: $__time
-
-      - name: delay_ms
-        title: Delay (ms)
-        formula: $delay_ms
-
-      - name: src_node.addr
-        title: Src Node.addr
-        formula: ${src_node.addr}
-
-      - name: snk_node.addr
-        title: Snk Node.addr
-        formula: ${snk_node.addr}
-
-      - name: traffic_class
-        title: Traffic Class
-        formula: ${traffic_class}
-
-      - name: flow_label
-        title: Flow Label
-        formula: ${flow_label}
-
-      - name: midpoint_count
-        title: Midpoint Count
-        formula: ${midpoint_count}
-
-      - name: sid_list
-        title: Sid List
-        formula: $sid_list
-
-      - name: src_node.node_id
-        title: Src Node.node Id
-        formula: ${src_node.node_id}
-
-      - name: src_node.out_interface_id
-        title: Src Node.out Interface Id
-        formula: ${src_node.out_interface_id}
-
-      - name: src_node.out_interface_name
-        title: Src Node.out Interface Name
-        formula: ${src_node.out_interface_name}
-
-      - name: snk_node.node_id
-        title: Snk Node.node Id
-        formula: ${snk_node.node_id}
-
-      - name: snk_node.in_interface_id
-        title: Snk Node.in Interface Id
-        formula: ${snk_node.in_interface_id}
-
-      - name: snk_node.in_interface_name
-        title: Snk Node.in Interface Name
-        formula: ${snk_node.in_interface_name}
-
-      - name: snk_node.tef_sid
-        title: Snk Node.tef Sid
-        formula: ${snk_node.tef_sid}
-
-      - name: path_info_0_.node_id
-        title: Path Info 0_.node Id
-        formula: ${path_info[0].node_id}
-
-      - name: path_info_0_.out_interface_id
-        title: Path Info 0_.out Interface Id
-        formula: ${path_info[0].out_interface_id}
-
-      - name: path_info_0_.out_interface_name
-        title: Path Info 0_.out Interface Name
-        formula: ${path_info[0].out_interface_name}
-
-      - name: path_info_1_.node_id
-        title: Path Info 1_.node Id
-        formula: ${path_info[1].node_id}
-
-      - name: path_info_1_.out_interface_id
-        title: Path Info 1_.out Interface Id
-        formula: ${path_info[1].out_interface_id}
-
-      - name: path_info_1_.out_interface_name
-        title: Path Info 1_.out Interface Name
-        formula: ${path_info[1].out_interface_name}
-
-      - name: path_info_2_.node_id
-        title: Path Info 2_.node Id
-        formula: ${path_info[2].node_id}
-
-      - name: path_info_2_.out_interface_id
-        title: Path Info 2_.out Interface Id
-        formula: ${path_info[2].out_interface_id}
-
-      - name: path_info_2_.out_interface_name
-        title: Path Info 2_.out Interface Name
-        formula: ${path_info[2].out_interface_name}
-
-      - name: path_info_3_.node_id
-        title: Path Info 3_.node Id
-        formula: ${path_info[3].node_id}
-
-      - name: path_info_3_.out_interface_id
-        title: Path Info 3_.out Interface Id
-        formula: ${path_info[3].out_interface_id}
-
-      - name: path_info_3_.out_interface_name
-        title: Path Info 3_.out Interface Name
-        formula: ${path_info[3].out_interface_name}
-
-      - name: payload_length
-        title: Payload Length
-        formula: ${payload_length}
-
-      - name: hop_limit
-        title: Hop Limit
-        formula:  ${hop_limit}
-
-      - name: hbh_opt_length
-        title: Hop-by-hop Option Length
-        formula:  ${hbh_opt_length}
-
-      - name: srh_tag
-        title: Srh Tag
-        formula: ${srh_tag}
-
-      - name: srh_flag
-        title: Srh Flag
-        formula: ${srh_flag}
-
-      - name: segments_left
-        title: Segments Left
-        formula: ${segments_left}
-
-      - name: session_id
-        title: Session Id
-        formula: ${session_id}
-
-      - name: sequence_number
-        title: Sequence Number
-        formula: ${sequence_number}
-
-      - name: delay_ns
-        title: Delay (ns)
-        formula: $delay_ns
-
-    # Plywood bucketing expressions (https://plywood.imply.io/expressions)
-    measures:
-      - name: count
-        title: Count
-        formula: $main.count()
-
-      - name: delay_ms_average
-        title: Delay Average (ms)
-        formula: $main.average($delay_ms)
-        format: 0,0.000 a
-
-      - name: delay_ns_average
-        title: Delay Average (ns)
-        formula: $main.average($delay_ns)
-        format: 0,0.0 a
 
   ################################################
   # DATACUBE pt.ipfix.processed
