@@ -49,7 +49,7 @@ The following requirements need to be satisfied if you wish to deploy the Data C
 
         ./setup-network.sh
 
-- (Alternative) Setup the virtual network only (writing path tracing metrics to ./collector.log file instead of kafka)
+- (Alternative) Setup the virtual network only (writing JSON metrics to probing_bins/collector.log file instead of kafka)
 
         ./setup-network.sh --no-visual
 
