@@ -29,7 +29,7 @@ Instructions on how to install the required dependencies, docker containers and 
 
 - Going through the setup script you will find other parameters that you can change, such as for example link_delays and Path Tracing templates.
 
-The following requirements need to be satisfied if you wish to deploy the Data Collection and Visualization pipeline as well. They are not needed if you only want to setup the virtual network with Path Tracing:
+The following requirements need to be satisfied if you wish to deploy the Data Collection and Visualization pipeline as well. They are not needed if you only want to setup the virtual network to try out Path Tracing without the visualization pipeline:
 
 - **[Apache Kafka](https://kafka.apache.org/) Message Broker and [Apache Druid](https://druid.apache.org/) Time Series Database**    
     Kafka and Druid can be deployed as docker containers. A docker-compose.yml file, information on how to provision it as well as configuration files are available in the ./docker folder. 
