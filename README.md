@@ -36,7 +36,7 @@ The following requirements need to be satisfied if you wish to deploy the Data C
     Instruction on how to install and configure Turnilo are available in the ./turnilo folder. 
 
 - **[Pmacct](https://github.com/pmacct/pmacct) collector**  
-    Pmacct needs to be installed if IPFIX integration is desired, but is not required for basic functionality of the main Path Tracing pipeline. Refer to the "Design" section of [my thesis](https://leonardorodoni.ch/thesis.pdf) for more explanations. The nfacct daemon (Pmacct daemon listening for IPFIX packets) can be deployed as a docker container. A docker-compose.yml file, instructions on how to provision it as well as configuration files are available in the ./docker folder.
+    Pmacct needs to be installed if IPFIX integration is desired, but is not required for basic functionality of the main Path Tracing pipeline. Refer to the "Design" section of [my thesis](<thesis_pdf_URL>) for more explanations. The nfacct daemon (Pmacct daemon listening for IPFIX packets) can be deployed as a docker container. A docker-compose.yml file, instructions on how to provision it as well as configuration files are available in the ./docker folder.
 
 ## How to run the pipeline
 
@@ -45,9 +45,13 @@ The following requirements need to be satisfied if you wish to deploy the Data C
 
         cd path_tracing/pipeline
 
-- Run the setup script 
+- Run this script to setup the virtual network and launch the visualization pipeline scripts
 
         ./setup-network.sh
+
+- (Alternative) Setup the virtual network only (writing path tracing metrics to ./collector.log file instead of kafka)
+
+        ./setup-network.sh --no-visual
 
 The script takes care of bootstrapping the virtual network, starting some python processing programs and launches Path Tracing probes sessions to generate traffic into the network. If successful, the script will launch a tmux session with debugging info:
 
