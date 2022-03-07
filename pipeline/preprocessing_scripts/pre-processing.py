@@ -193,7 +193,7 @@ def msg_process(msg, producer, produce_topic, tts_template, mapping):
             #    print("nanoseconds rollover")
 
             # This is still not perfect, but still the best stable option so far:
-            # Need to figure out how to correctly fix seconds rollover
+            # TODO: need to handle in a better way seconds rollover! (see above)
             reconstructed_t64 = reconstructed_t64 - (1<<26)
             reconstructed_t64_s = divmod(reconstructed_t64,1<<32)[0] 
             reconstructed_t64_ns = divmod(reconstructed_t64,1<<32)[1] 

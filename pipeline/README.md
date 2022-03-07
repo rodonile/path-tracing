@@ -19,7 +19,8 @@
         ./link_delay_set.sh --link <"link_id"> --delay <delay_ms>       # set new delay to link
         ./link_delay_set.sh --defaults                                  # reset to default values
 
-# Overview of the scripts' functionality
+
+# Overview of the pipeline's desing
 
 The following diagrams give an idea on what the python scripts do and how they interact within the Visualization pipeline. Refer to the "Design" Section of [My Thesis](<thesis_pdf_URL>) for more detailed information and explanations.
 

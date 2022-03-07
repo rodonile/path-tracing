@@ -15,6 +15,19 @@
 ##################################################
 
 ##################################################
+# Argument parsing
+##################################################
+NO_VISUAL=0
+if [[ "$1" == "--no-visual" || "$1" == "-n" ]]
+then
+	echo "Setting up virtual network only. Path Tracing JSON output written to .probing_bins/collector.log"
+    NO_VISUAL=1
+    shift
+else
+    echo "Setting up virtual network and visualization pipeline."
+fi
+
+##################################################
 # Start vpp instances
 ##################################################
 sudo vpp api-segment { prefix vpp1 } socksvr { socket-name /run/vpp/api-vpp1.sock } cpu {main-core 16} unix { cli-listen /run/vpp/cli.vpp1.sock  cli-prompt vpp1# startup-config /etc/vpp/vpp1.conf} plugins { plugin dpdk_plugin.so { disable }
@@ -1020,36 +1033,46 @@ tmux send-keys 'sudo ./probing_bins/ptprobegen --ptprobegen-port=linux7 --api-en
 tmux select-pane -t 3
 tmux send-keys 'sudo ./probing_bins/ptprobegen --ptprobegen-port=linux8 --api-endpoint=0.0.0.0:50008' C-m
 tmux select-pane -t 4
-tmux send-keys 'sudo ./probing_bins/probe-collector --port=collector --kafka=127.0.0.1:9093' C-m
-tmux send-keys 'echo "Sending data to kafka"' C-m
+if [[ ${NO_VISUAL} == 0 ]]
+then
+    tmux send-keys 'sudo ./probing_bins/probe-collector --port=collector --kafka=127.0.0.1:9093' C-m
+    tmux send-keys 'echo "Sending data to kafka"' C-m
+else
+    tmux send-keys 'sudo ./probing_bins/probe-collector --port=collector --file=probing_bins/collector.log --log_dir=probing_bins --alsologtostderr' C-m
+    tmux send-keys 'echo "Sending data to file"' C-m
+fi
 tmux select-pane -t 5
 tmux send-keys 'sudo tcpdump -i brcollector' C-m
 tmux select-pane -t 6
 tmux send-keys 'sudo tcpdump -i bripfix' C-m
 
-# PYTHON PRE-PROCESSING
-tmux new-window
-tmux select-window -t 1
-tmux split-window -v -p 70
-tmux select-pane -t 1
-tmux send-keys 'htop' C-m
-tmux select-pane -t 0
-tmux split-window -h -p 50
-tmux select-pane -t 0
-tmux send-keys 'python3 ./preprocessing_scripts/pre-processing.py' C-m
-tmux select-pane -t 1
-tmux send-keys 'python3 ./preprocessing_scripts/topic-processing.py' C-m
-tmux select-pane -t 0
-sleep 2
 
-# PYTHON IPFIX PROCESSING
-tmux new-window
-tmux select-window -t 2
-tmux split-window -v -p 70
-tmux select-pane -t 0
-tmux send-keys 'python3 ./preprocessing_scripts/ipfix-processing.py' C-m
-tmux select-pane -t 1
-sleep 2
+if [[ ${NO_VISUAL} == 0 ]]
+then
+    # PYTHON PRE-PROCESSING
+    tmux new-window
+    tmux select-window -t 1
+    tmux split-window -v -p 70
+    tmux select-pane -t 1
+    tmux send-keys 'htop' C-m
+    tmux select-pane -t 0
+    tmux split-window -h -p 50
+    tmux select-pane -t 0
+    tmux send-keys 'python3 ./preprocessing_scripts/pre-processing.py' C-m
+    tmux select-pane -t 1
+    tmux send-keys 'python3 ./preprocessing_scripts/topic-processing.py' C-m
+    tmux select-pane -t 0
+    sleep 2
+
+    # PYTHON IPFIX PROCESSING
+    tmux new-window
+    tmux select-window -t 2
+    tmux split-window -v -p 70
+    tmux select-pane -t 0
+    tmux send-keys 'python3 ./preprocessing_scripts/ipfix-processing.py' C-m
+    tmux select-pane -t 1
+    sleep 2
+fi
 
 # Re-attach to first window (probing)
 tmux select-window -t 0
@@ -1057,8 +1080,8 @@ tmux select-pane -t 7
 # Start some probes on the background
 sleep 5
 tmux send-keys './lightweight_final_probes.sh &' C-m
-tmux send-keys 'echo "Probes started on background (lasting 1H)..."' C-m
-tmux send-keys 'cat README.md' C-m
+tmux send-keys 'echo "Probes started on background (lasting ~1H)..."' C-m
+tmux send-keys 'head -20 README.md' C-m
 
 # Attach to tmux session at windows 0 (PROBING)
 tmux select-window -t 0
