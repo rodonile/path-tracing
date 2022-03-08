@@ -95,7 +95,7 @@ From the tmux session, it is possible to trigger the following functionality:
 
 Here some examples of possible visualization in Turnilo:
 
-![Alt text](images/turnilo_1.PNG?raw=true "Path And Delay")
+![Alt text](images/turnilo_global_paths.PNG?raw=true "Path And Delay")
 
 ![Alt text](images/turnilo_2.PNG?raw=true "Link Delay")
 
