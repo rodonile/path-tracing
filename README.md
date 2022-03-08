@@ -97,9 +97,9 @@ Here some examples of possible visualization in Turnilo:
 
 ![Alt text](images/turnilo_global_paths.PNG?raw=true "Path And Delay")
 
-![Alt text](images/turnilo_2.PNG?raw=true "Link Delay")
+![Alt text](images/turnilo_hbh_all_paths.PNG?raw=true "Link Delay")
 
-![Alt text](images/turnilo_3.PNG?raw=true "Timesplit bandwidth and delay on br12")
+![Alt text](images/turnilo_hbh_timesplit.PNG?raw=true "Timesplit bandwidth and delay on br12")
 
 Additional visualization examples are available in the "Evaluation" section of [my thesis](<thesis_pdf_URL>).
 
