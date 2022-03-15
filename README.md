@@ -4,7 +4,7 @@ This repository contains a set of scripts that setup a Linux virtual network wit
 
 The information in the telemetry packets can be used to visualize important network metrics such as delay and paths. The pipeline is based on [Apache Kafka](https://kafka.apache.org/), [Apache Druid](https://druid.apache.org/), and the [Turnilo](https://github.com/allegro/turnilo) visualization platform. However it is also possible to spin up the virtual network alone, if desired.
 
-For more details explanations on Path Tracing and how the pipeline works refer to [My Master Thesis](<thesis_pdf_URL>), which was carried out at [ETH Zurich](https://ee.ethz.ch/) toghether with the [Swisscom](https://swisscom.ch) Network Telemetry and Analytics Team. 
+For more details explanations on Path Tracing and how the pipeline works refer to [My Master Thesis](thesis/master_thesis_report.pdf), which was carried out at [ETH Zurich](https://ee.ethz.ch/) toghether with the [Swisscom](https://swisscom.ch) Network Telemetry and Analytics Team. 
 
 Instructions on how to install the required dependencies, docker containers and launch the virtual environment are available below.
 
@@ -38,7 +38,7 @@ The following requirements need to be satisfied if you wish to deploy the Data C
     Instruction on how to install and configure Turnilo are available in the [turnilo](turnilo) folder. 
 
 - **[Pmacct](https://github.com/pmacct/pmacct) collector**  
-    Pmacct needs to be installed if IPFIX integration is desired, but is not required for basic functionality of the main Path Tracing pipeline. Refer to the "Design" section of [my thesis](<thesis_pdf_URL>) for more explanations. The nfacct daemon (Pmacct daemon listening for IPFIX packets) can be deployed as a docker container. A docker-compose.yml file, instructions on how to provision it as well as configuration files are available in the [docker](docker) folder.
+    Pmacct needs to be installed if IPFIX integration is desired, but is not required for basic functionality of the main Path Tracing pipeline. Refer to the "Design" section of [my thesis](thesis/master_thesis_report.pdf) for more explanations. The nfacct daemon (Pmacct daemon listening for IPFIX packets) can be deployed as a docker container. A docker-compose.yml file, instructions on how to provision it as well as configuration files are available in the [docker](docker) folder.
 
 ## How to run the pipeline
 
@@ -101,7 +101,7 @@ Here some examples of possible visualization in Turnilo:
 
 ![Alt text](images/turnilo_hbh_timesplit.PNG?raw=true "Timesplit bandwidth and delay on br12")
 
-Additional visualization examples are available in the "Evaluation" section of [my thesis](<thesis_pdf_URL>).
+Additional visualization examples are available in the "Evaluation" section of [my thesis](thesis/master_thesis_report.pdf).
 
 ## Tear down virtual network
 
