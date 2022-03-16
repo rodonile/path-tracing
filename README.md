@@ -21,7 +21,7 @@ Instructions on how to install the required dependencies, docker containers and 
         pip install pydruid
 
 - **[VPP](https://s3-docs.fd.io/vpp/22.06/) with Path Tracing Plugin**  
-    The code for the VPP version with the Path Tracing patch is available [here](https://github.com/path-tracing/vpp). Since compilation can be quite cumbersome, pre-compiled binaries (.deb) can be downloaded from [this link](<vpp_binaries_URL>), and if you want to quickly test out our pipeline we suggest using them. In order to install the binaries refer to the README in the [vpp](vpp) folder.
+    In order to install the VPP binaries refer to the README in the [vpp](vpp) folder.
 
 - Each one of the 8 VPP instances is assigned to a single CPU core. We suggest assigning each VPP instance to a single core for stability reasons. You most likely will need to adjust the cpu main-core indexing in the setup script (**[pipeline/setup-network.sh](pipeline/setup-network.sh)**) under "Start VPP instances" to reflect the available cores on your VM. For example, in a VM with 8 cores, the indexes range from 0 to 7. To assign the virst VPP instance to the first core the parameter in the setup script will be:
 
