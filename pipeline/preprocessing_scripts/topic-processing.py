@@ -90,11 +90,8 @@ def msg_process(msg, producer, tts_template, mapping, rollover_correction):
     global_json_dict['path_info'] = {}
     nodes_path_list = []
 
-    # TODO: and eventually also interfaces_path_list, i.e. [tap11, tap20, tap22, tap40, tap42, ...] etc. (! per questo bisogna correlare con il topology mapping!)
-
     # Create nodes_path_list and strings with concatenated node_ids, interface_ids, and interface_names
-    # HINT: nodes_path_list, i.e. [vpp1, vpp2, vpp4, vpp6, vpp8], s.t. from turnilo it can be filtered i.e. nodes=vpp2 !! (like showed by Marco) to e.g. display
-    #       all the paths that went through vpp2
+    # HINT: nodes_path_list, i.e. [vpp1, vpp2, vpp4, vpp6, vpp8], s.t. from turnilo it can be filtered i.e. nodes=vpp2
     nodes_path = json_dict['src_node']['node_id']
     nodes_path_list.append(json_dict['src_node']['node_id'])
     interface_id_path = str(json_dict['src_node']['out_interface_id'])
@@ -124,8 +121,7 @@ def msg_process(msg, producer, tts_template, mapping, rollover_correction):
             sid_list_full = sid_list_full + " - "
     global_json_dict['sid_list_full'] = sid_list_full
 
-    # Compute path delay (to do comparison with computation in druid)
-    # TODO: discussion for thesis: better computation in druid or with python processing?
+    # Compute path delay
     global_json_dict['path_info']['delay'] = compute_delay(json_dict['src_node']['t64'],json_dict['snk_node']['t64'])
 
     # Serialize and produce to pt.probe.global topic
@@ -136,9 +132,6 @@ def msg_process(msg, producer, tts_template, mapping, rollover_correction):
     ############
     # pt.probe.hbh
     ############
-
-    # TODO: add src_interface_idx and dst_interface index to link_info json (will be used to correlate with ipfix)
-
     hbh_json_dict = dict(json_dict)
     hbh_json_dict['path_info'] = {}
     hbh_json_dict['link_info'] = {}

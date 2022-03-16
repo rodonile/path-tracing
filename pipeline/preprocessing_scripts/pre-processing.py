@@ -142,76 +142,47 @@ def msg_process(msg, producer, produce_topic, tts_template, mapping):
             midpoint_count_flag = True
 
     
-    # Sink timestamp to reconstruct delay (start from sink --> step by step backwards computation until first hop)
+    # Sink timestamp 
     temp_next_timestamp = json_dict['snk_node']['t64']
-    temp_next_timestamp_s = divmod(json_dict['snk_node']['t64'],1<<32)[0]         # for now assume this won't rollover (?)
+    temp_next_timestamp_s = divmod(json_dict['snk_node']['t64'],1<<32)[0]
     temp_next_timestamp_ns = divmod(json_dict['snk_node']['t64'],1<<32)[1]
+    temp_next_truncated_t64 = (temp_next_timestamp_ns >> 18) & 0b11111111  
+
     # Populate path_info list with missing metrics
     for i in range(0, processed_json_dict['midpoint_count']):
         out_interface_id = mcd_stack_list[i] >> 12 & 0b111111111111                                      # bits 12 to 24
         processed_json_dict['path_info'][i]['out_interface_id'] = out_interface_id
         processed_json_dict['path_info'][i]['out_interface_load'] = mcd_stack_list[i] >> 8 & 0b1111      # bits 8 to 12
 
-        # Reconstruct timestamp and correct rollovers
+        # Reconstruct timestamps and correct rollovers
+        # --> start from sink then step by step backwards computation until first hop
         # HINT: for now only support tts_template=2
-        #       Path tracing is being extended s.t. it will support tts_template value to be saved in the HBH header and exported 
-        #       TODO (future work) when this is available: check the tts_template value in json's path_info and use it to reconstruct the template
-
-        # Reconstruct timestamp with help of next hops' timestamp
         # TEMPLATE 2: bits 18-25 (WAN link)
+        TEMPLATE_2_OFFSET = 18
+        TEMPLATE_2_MASK = (((2**6-1) << 8 + TEMPLATE_2_OFFSET))              # =0xFC000000
+
         reconstructed_t64_s = temp_next_timestamp_s
         truncated_t64 = mcd_stack_list[i] & 0b11111111                                                    # bits 0 to 8
-        reconstructed_t64_ns = temp_next_timestamp_ns & (((2**6-1) << 8+18))
-        reconstructed_t64_ns = reconstructed_t64_ns | (truncated_t64 << 18)
+        reconstructed_t64_ns = temp_next_timestamp_ns & TEMPLATE_2_MASK
+        reconstructed_t64_ns = reconstructed_t64_ns | (truncated_t64 << TEMPLATE_2_OFFSET)
         reconstructed_t64 = (reconstructed_t64_s << 32) | reconstructed_t64_ns
         
         # Correct rollovers:
-        # Check if timestamp is bigger than next hop's timestamp, and if the case correct rollover
-        # TODO: correct better the rollover across the seconds part
         delay_rollovers = 1
         while compute_delay(reconstructed_t64, temp_next_timestamp) < 0:
-            #print("DEBUG: we entered rollover correction. Round: ", delay_rollovers)
-            #print("WHERE ARE WE: ", out_interface_id)
-            #print("WHY DID WE ENTER? SEE TIMESTAMPS BELOW:")
-            #print("Truncated T64 value: ", truncated_t64)
-            #print("Reconstructed_t64s: ", reconstructed_t64_s)
-            #print("Reconstructed_t64ns: ", reconstructed_t64_ns)
-            #print("Reconstructed_t64: ", reconstructed_t64)
-            #print("NEXT T64s: ", temp_next_timestamp_s)
-            #print("NEXT T64ns: ", temp_next_timestamp_ns)
-            #print("NEXT T64: ", temp_next_timestamp)
-            #delay = compute_delay(reconstructed_t64, temp_next_timestamp)
-            #print("DELAY: ", delay)
-            
-            #if reconstructed_t64_ns < (1<<26):
-            #    reconstructed_t64_s = reconstructed_t64_s - 1
-            #    reconstructed_t64 = (reconstructed_t64_s << 32) | reconstructed_t64_ns
-            #    print("seconds rollover")
-            #else:
-            #    reconstructed_t64_ns = reconstructed_t64_ns - (1<<26)
-            #    reconstructed_t64 = (reconstructed_t64_s << 32) | reconstructed_t64_ns
-            #    print("nanoseconds rollover")
-
-            # This is still not perfect, but still the best stable option so far:
-            # TODO: need to handle in a better way seconds rollover! (see above)
-            reconstructed_t64 = reconstructed_t64 - (1<<26)
-            reconstructed_t64_s = divmod(reconstructed_t64,1<<32)[0] 
-            reconstructed_t64_ns = divmod(reconstructed_t64,1<<32)[1] 
-
-
-            # DEBUG PRINTS
-            #print("After fixing rollover reconstructed t64:")
-            #print("Reconstructed_t64s: ", reconstructed_t64_s)
-            #print("Reconstructed_t64ns: ", reconstructed_t64_ns)
-            #print("Reconstructed_t64: ", reconstructed_t64)
-            #print("NEXT T64s: ", temp_next_timestamp_s)
-            #print("NEXT T64ns: ", temp_next_timestamp_ns)
-            #print("NEXT T64: ", temp_next_timestamp)
-            #delay = compute_delay(reconstructed_t64, temp_next_timestamp)
-            #print("DELAY: ", delay)
-            #print("------------------\n")
-
-            # DEBUG MAX ROLLOVERS IN TEST NETWORK
+            # Seconds rollover
+            if reconstructed_t64_ns < (1<<26):
+                seconds_rollover_flag = 1
+                reconstructed_t64_s = reconstructed_t64_s - 1
+                reconstructed_t64_ns = 999999999 & TEMPLATE_2_MASK
+                reconstructed_t64_ns = reconstructed_t64_ns | (truncated_t64 << TEMPLATE_2_OFFSET)
+                reconstructed_t64 = (reconstructed_t64_s << 32) | reconstructed_t64_ns
+            # Nanoseconds rollover
+            else:
+                reconstructed_t64_ns = reconstructed_t64_ns - (1<<26)
+                reconstructed_t64 = (reconstructed_t64_s << 32) | reconstructed_t64_ns
+                
+            # Max per-link rollover logging
             if delay_rollovers > delay_rollovers_max:
                 delay_rollovers_max = delay_rollovers
                 f = open("max_delay_rollovers.log", "w")
@@ -226,6 +197,7 @@ def msg_process(msg, producer, produce_topic, tts_template, mapping):
         temp_next_timestamp = reconstructed_t64
         temp_next_timestamp_s = reconstructed_t64_s
         temp_next_timestamp_ns = reconstructed_t64_ns
+        temp_next_truncated_t64 = truncated_t64
 
         # Populate missing information based on network topology (static mapping file)
         processed_json_dict['path_info'][i]['node_id'] = mapping[str(out_interface_id)]['node_id']
