@@ -1,6 +1,6 @@
 # Path Tracing Visualization Pipeline
 
-This repository contains a set of scripts that setup a Linux virtual network with VPP routers running the [Path Tracing](https://github.com/path-tracing) protocol. Path Tracing is an open-source in-band telemetry protocol developed by Cisco which provides records of the packet's forwarding path as well as end-to-end delay, per-hop delay and load on each transit node interface. The main script also launches python programs that process and enrich telemetry packets to prepare them for visualization. 
+This repository contains a set of scripts that setup a Linux virtual network with VPP routers running the [Path Tracing](https://datatracker.ietf.org/doc/draft-filsfils-spring-path-tracing/) protocol. Path Tracing is an open-source in-band telemetry protocol developed by Cisco which provides records of the packet's forwarding path as well as end-to-end delay, per-hop delay and load on each transit node interface. The main script also launches python programs that process and enrich telemetry packets to prepare them for visualization. 
 
 The information in the telemetry packets can be used to visualize important network metrics such as delay and paths. The pipeline is based on [Apache Kafka](https://kafka.apache.org/), [Apache Druid](https://druid.apache.org/), and the [Turnilo](https://github.com/allegro/turnilo) visualization platform. However it is also possible to spin up the virtual network alone, if desired.
 
