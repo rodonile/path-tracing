@@ -4,7 +4,7 @@ This repository contains a set of scripts that setup a Linux virtual network wit
 
 The information in the telemetry packets can be used to visualize important network metrics such as delay and paths. The pipeline is based on [Apache Kafka](https://kafka.apache.org/), [Apache Druid](https://druid.apache.org/), and the [Turnilo](https://github.com/allegro/turnilo) visualization platform. However it is also possible to spin up the virtual network alone, if desired.
 
-For more details explanations on Path Tracing and how the pipeline works refer to [My Master Thesis](https://nsg.ee.ethz.ch/fileadmin/user_upload/theses/master_thesis_report_leonardo_rodoni.pdf), which was carried out at [ETH Zurich](https://ee.ethz.ch/) toghether with the [Swisscom](https://swisscom.ch) Network Telemetry and Analytics Team. 
+For more details explanations on Path Tracing and how the pipeline works refer to [My Master Thesis](https://leonardorodoni.ch/documents/master_thesis_report_leonardo_rodoni.pdf), which was carried out at [ETH Zurich](https://ee.ethz.ch/) toghether with the [Swisscom](https://swisscom.ch) Network Telemetry and Analytics Team. 
 
 Instructions on how to install the required dependencies, docker containers and launch the virtual environment are available below.
 
