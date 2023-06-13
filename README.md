@@ -38,7 +38,7 @@ The following requirements need to be satisfied if you wish to deploy the Data C
     Instruction on how to install and configure Turnilo are available in the [turnilo](turnilo) folder. 
 
 - **[Pmacct](https://github.com/pmacct/pmacct) collector**  
-    Pmacct needs to be installed if IPFIX integration is desired, but is not required for basic functionality of the main Path Tracing pipeline. Refer to the "Design" section of [my thesis](https://nsg.ee.ethz.ch/fileadmin/user_upload/theses/master_thesis_report_leonardo_rodoni.pdf) for more explanations. The nfacct daemon (Pmacct daemon listening for IPFIX packets) can be deployed as a docker container. A docker-compose.yml file, instructions on how to provision it as well as configuration files are available in the [docker](docker) folder.
+    Pmacct needs to be installed if IPFIX integration is desired, but is not required for basic functionality of the main Path Tracing pipeline. Refer to the "Design" section of [my thesis](https://leonardorodoni.ch/documents/master_thesis_report_leonardo_rodoni.pdf) for more explanations. The nfacct daemon (Pmacct daemon listening for IPFIX packets) can be deployed as a docker container. A docker-compose.yml file, instructions on how to provision it as well as configuration files are available in the [docker](docker) folder.
 
 ## How to run the pipeline
 
@@ -101,7 +101,7 @@ Here some examples of possible visualization in Turnilo:
 
 ![Alt text](images/turnilo_hbh_timesplit.PNG?raw=true "Timesplit bandwidth and delay on br12")
 
-Additional visualization examples are available in the "Evaluation" section of [my thesis](https://nsg.ee.ethz.ch/fileadmin/user_upload/theses/master_thesis_report_leonardo_rodoni.pdf).
+Additional visualization examples are available in the "Evaluation" section of [my thesis](https://leonardorodoni.ch/documents/master_thesis_report_leonardo_rodoni.pdf).
 
 ## Tear down virtual network
 
