@@ -22,7 +22,7 @@
 
 # Overview of the pipeline's desing
 
-The following diagrams give an idea on what the python scripts do and how they interact within the Visualization pipeline. Refer to the "Design" Section of [My Thesis](https://nsg.ee.ethz.ch/fileadmin/user_upload/theses/master_thesis_report_leonardo_rodoni.pdf) for more detailed information and explanations.
+The following diagrams give an idea on what the python scripts do and how they interact within the Visualization pipeline. Refer to the "Design" Section of [My Thesis](https://leonardorodoni.ch/documents/master_thesis_report_leonardo_rodoni.pdf) for more detailed information and explanations.
 
 ## Main Path Tracing Visualization Pipeline
 
